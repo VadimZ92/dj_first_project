@@ -18,8 +18,8 @@
     </div>
 
     <div class="content">
-      {% for phone in phones %}
-        <div class="phone">
+      {% for book in books %}
+        <div class="book">
           <a href="{% url 'phone' phone.slug %}">
             <h3>{{ phone.name }}</h3>
           </a>

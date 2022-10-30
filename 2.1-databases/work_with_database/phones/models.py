@@ -12,5 +12,5 @@ class Phone(models.Model):
     def __str__(self):
         return f'{self.name}'
 
-    # def get_url(self):
-    #     return reverse("phone", kwargs={"slug": self.slug})
+    def get_absolute_url(self):
+        return reverse("phone", kwargs={"slug": self.slug})
