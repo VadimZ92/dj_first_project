@@ -1,5 +1,9 @@
 from django.urls import path
+from django.contrib import admin
+
 
 urlpatterns = [
-    # TODO: зарегистрируйте необходимые маршруты
+    # path('admin/', admin.site.urls),
+
+
 ]
