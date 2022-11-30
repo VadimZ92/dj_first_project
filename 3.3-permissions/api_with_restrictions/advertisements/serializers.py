@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-
+from django.core.exceptions import ValidationError
 from advertisements.models import Advertisement
 
 
@@ -41,5 +41,12 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         """Метод для валидации. Вызывается при создании и обновлении."""
 
         # TODO: добавьте требуемую валидацию
-
+        user = self.context["request"].user
+        objects = Advertisement.objects.filter(status='OPEN', creator=user)
+        method = self.context["request"].method
+        status = self.initial_data.get("status")
+        if len(objects) >= 10 and method == 'POST':
+            raise ValidationError("Превышение открытых объявлений")
+        if len(objects) >= 10 and method == 'PATCH' and status == "OPEN":
+            raise ValidationError("Превышение открытых объявлений")
         return data
