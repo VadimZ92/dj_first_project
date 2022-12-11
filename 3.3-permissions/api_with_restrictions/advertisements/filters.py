@@ -6,9 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 class AdvertisementFilter(filters.FilterSet):
     """Фильтры для объявлений."""
-
-    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     created_at = filters.DateFromToRangeFilter()
     class Meta:
         model = Advertisement
-        fields = ['creator', 'created_at']
+        fields = ['creator', 'created_at', "status"]

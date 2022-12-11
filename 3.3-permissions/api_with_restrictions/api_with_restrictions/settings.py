@@ -16,8 +16,8 @@ from pathlib import Path
 import django.db.models
 import rest_framework.authentication
 # import rest_framework.throttling
-import rest_framework
-import django_filters.rest_framework
+# import rest_framework
+# import django_filters.rest_framework
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
