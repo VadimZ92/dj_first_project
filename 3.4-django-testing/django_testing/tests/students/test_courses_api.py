@@ -29,15 +29,18 @@ def student_factory():
 
 @pytest.mark.django_db
 def test_get_first_course(client, student_factory, course_factory):
-    course = course_factory(_quantity=1, name='1')
+    course = course_factory(_quantity=10)
     # student = student_factory(_quantity=10)
-    response = client.get('/courses/?id=1')
+    response = client.get(f'/courses/{course[0].id}/')
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == len(course)
-    for i, m in enumerate(data):
-        assert m['name'] == course[i].name
-
+    count = 0
+    for i, m in data.items():
+        if i == 'id':
+            count += 1
+        assert count == 1
+        if i == 'name':
+            assert m == course[0].name
 
 @pytest.mark.django_db
 def test_get_list_course(client, student_factory, course_factory):
